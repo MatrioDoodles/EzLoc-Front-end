@@ -1,0 +1,104 @@
+<div *ngIf="showloader" class="dimPage">
+    <p-progressSpinner
+    style="position: absolute;
+    left: 50%;
+    top: 50%;" ></p-progressSpinner>
+  </div>
+<div class="container-fluid card mb-3 login-center" >
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img src="..." class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+  <!--section class="ftco-sectionimg js-fullheight" style="background-image: /*url(../../assets/imgs/bg.jpg)*/
+  url('../../assets/imgs/login-bg.jpg');background-size: cover;height: 100vh; width: 100%;" >
+    <div class="container" >
+      <div class="row justify-content-center" >
+        <div class="col-md-6 text-center mb-5" style="margin-top: 20%">
+          <h2 class="heading-section">Se Connecter</h2>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+          <div class="login-wrap p-0">
+            <h3 class="mb-4 text-center">   </h3>
+            <form action="#" class="signin-form" #loginForm="ngForm">
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Username" [(ngModel)]="username"  name="Username" required>
+              </div>
+              <div class="form-group">
+                <input id="password-field" type="password" class="form-control" placeholder="Password" [(ngModel)]="password" name="Password" required>
+                <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+              </div>
+              <div class="form-group">
+                <button  (click)=handleLogin() [disabled]="loginForm.invalid"   class="form-control btn btn-primary submit px-3">Login</button>
+              </div>
+              <div class="form-group d-md-flex">
+                <div class="w-50">
+                  <label class="checkbox-wrap checkbox-primary">Remember Me
+                    <input type="checkbox" checked>
+                    <span class="checkmark"></span>
+                  </label>
+                </div>
+                <div class="w-50 text-md-right">
+                  <a href="#" style="color: #fff">Forgot Password</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/main.js"></script>
+
+
+
+<!--div  style="background-image:
+url('../../assets/imgs/login-bg.jpg');background-size: contain;height: 100vh" >
+
+
+<p-card>
+    <div class="grid">
+    <div class="col-8" style="background-color: #3123AE;">
+
+    </div>
+    <div class="col-4 ">
+    <div class="grid">
+
+            <div class="text-lg font-bold text-center col-12">
+                Se Connecter
+            </div>
+       <div class="col-12 ">
+        <div class="field grid flex align-items-center justify-content-center" >
+        <span class="p-input-icon-left">
+            <i class="fas fa-user"></i>
+            <input type="text" pInputText placeholder="Login" [(ngModel)]="username" />
+        </span>
+        </div>
+        <div class="field grid flex align-items-center justify-content-center">
+        <span class="p-input-icon-left">
+            <i class="fas fa-key"></i>
+            <input type="password" pInputText placeholder="Mot de passe" [(ngModel)]="password" />
+        </span>
+        </div>
+    </div>
+        <div class="col-12">
+            <button pButton pRipple label="Se Connecter" icon="fas fa-key" (click)="login()" class="p-button-rounded p-button-primary"></button>
+        </div>
+    </div>
+</div>
+</div>
+</p-card>
+</div-->
