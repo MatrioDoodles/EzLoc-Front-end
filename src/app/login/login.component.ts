@@ -22,5 +22,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
 
   }
-handleLogin(){}
+handleLogin(){
+
+  this.showloader = true;
+}
 }

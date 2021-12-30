@@ -24,7 +24,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     InputTextModule,
     FormsModule,
     ProgressSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
