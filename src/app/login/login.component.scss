@@ -1,25 +1,37 @@
+::ng-deep .form-control {
+  height: 48px;
+  background: #fff;
+  color: #000;
+  font-size: 16px;
+  border-radius: 5px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.1); }
+.form-control::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: rgba(0, 0, 0, 0.2) !important; }
+.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  color: rgba(0, 0, 0, 0.2) !important; }
+.form-control:-ms-input-placeholder {
+  /* IE 10+ */
+  color: rgba(0, 0, 0, 0.2) !important; }
+.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  color: rgba(0, 0, 0, 0.2) !important; }
+.form-control:focus, .form-control:active {
+  outline: none !important;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #3123AE; }
 
-/*.dims{
-    width: 60%;
-    height: 100%;
-    width: 80%;
-  text-align:center;
-  margin: 5% auto;
-  height: 80vh;
-  max-height: 70%;
-
-}*/
-.login-center{
-    width: 80%;
-    margin: 5% auto;
-    text-align:center;
-    height: 80vh;
+.writing-font{
+  font-family:AudioWide;
 }
-.dimPage{
-    background: rgba(0,0,0,.5) ;
-    width:100%;
-    height:100%;
-    position:fixed;
-    align-items: center;
-    z-index:999;
-  }
+@font-face {
+  font-family: "AudioWide";
+  src: url("../../assets/fonts/A");
+  src: url("https://yoursite.com/css/fonts/CustomFont.woff") format("woff"),
+  url("https://yoursite.com/css/fonts/CustomFont.otf") format("opentype"),
+  url("https://yoursite.com/css/fonts/CustomFont.svg#filename") format("svg");
+}

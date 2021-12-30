@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { LoginComponent } from './login/login.component';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
@@ -23,7 +23,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CardModule,
     InputTextModule,
     FormsModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
