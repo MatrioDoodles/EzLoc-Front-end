@@ -36,3 +36,10 @@
   align-items: center;
   z-index:999;
 }
+
+:host {
+  ::ng-deep .p-toast .p-toast-message{
+    width: 80%;
+    margin-left: auto;
+  }
+}

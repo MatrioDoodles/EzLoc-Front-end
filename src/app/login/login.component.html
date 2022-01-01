@@ -1,8 +1,8 @@
-<div *ngIf="showloader" class="dimPage">
+<div *ngIf="showLoader" class="dimPage">
   <p-progressSpinner
     style="position: absolute;
-  left: 50%;
-  top: 50%;" ></p-progressSpinner>
+  left: 40%;
+  top: 40%;" ></p-progressSpinner>
 </div>
 <section class="ftco-section" style="background-image: url(../../assets/imgs/background.png);
                                      background-size: cover;
@@ -31,17 +31,17 @@
                 </p>
               </div>
             </div>
-            <form [formGroup]="form" (ngSubmit)="handleLogin()" class="signin-form">
+            <form [formGroup]="loginForm" (ngSubmit)="handleLogin()" class="signin-form">
               <div class="form-group mb-3">
-                <label class="label writing-font" formControlName="username">Login</label>
-                <input type="text" class="form-control" placeholder="Username" style="height: 48px" required>
+                <label class="label writing-font" >Login</label>
+                <input type="text" class="form-control" formControlName="username" placeholder="Username" style="height: 48px" required>
               </div>
               <div class="form-group mb-3">
-                <label class="label writing-font" formControlName="password" >Mot de Passe</label>
-                <input type="password" class="form-control" placeholder="Password" style="height: 48px"  required>
+                <label class="label writing-font"  >Mot de Passe</label>
+                <input type="password" class="form-control" formControlName="password" placeholder="Password" style="height: 48px"  required>
               </div>
               <div class="form-group">
-                <button type="submit" [disabled]="!form.valid" class="form-control btn btn-primary rounded submit px-3 writing-font" style="height: 48px">Se Connecter</button>
+                <button type="submit" [disabled]="!loginForm.valid" class="form-control btn btn-primary rounded submit px-3 writing-font" style="height: 48px">Se Connecter</button>
               </div>
               <div class="form-group d-md-flex">
                 <div class="w-50 text-left">
@@ -63,3 +63,4 @@
   </div>
 </section>
 <script src="../../assets/js/main.js"></script>
+<p-toast position="top-right"></p-toast>

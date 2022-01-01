@@ -9,6 +9,11 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HttpInterceptorService} from "./services/http-interceptor.service";
+import {ToastModule} from "primeng/toast";
+import {MessageModule} from "primeng/message";
+import {MessagesModule} from "primeng/messages";
 
 @NgModule({
   declarations: [
@@ -23,11 +28,16 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CardModule,
     InputTextModule,
     FormsModule,
-    ProgressSpinnerModule,
     ReactiveFormsModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ProgressSpinnerModule,
+    HttpClientModule,
+    ToastModule,
+    MessageModule,
+    MessagesModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true},],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

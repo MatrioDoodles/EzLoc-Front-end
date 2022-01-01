@@ -16,6 +16,8 @@ import { MainComponentComponent } from './DashboardComponents/main-component/mai
 import { ListComponentComponent } from './AgentsComponents/list-component/list-component.component';
 import { FormComponentComponent } from './AgentsComponents/form-component/form-component.component';
 import { CardModule } from 'primeng/card';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ToastModule} from "primeng/toast";
 
 
 @NgModule({
@@ -39,7 +41,10 @@ import { CardModule } from 'primeng/card';
     SidebarModule,
     DockModule,
     CardModule,
-    
+    FormsModule,
+    ReactiveFormsModule,
+    ToastModule,
+
   ]
 })
 export class PrimaryModule { }
