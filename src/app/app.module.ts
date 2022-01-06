@@ -10,15 +10,19 @@ import { InputTextModule } from 'primeng/inputtext';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {HttpInterceptorService} from "./services/http-interceptor.service";
+import {HttpInterceptorService} from "./services/auth-services/http-interceptor.service";
 import {ToastModule} from "primeng/toast";
 import {MessageModule} from "primeng/message";
 import {MessagesModule} from "primeng/messages";
+import { FirstTimeSetupComponent } from './first-time-setup/first-time-setup.component';
+import {StepsModule} from "primeng/steps";
+import {MatStepperModule} from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    FirstTimeSetupComponent
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,9 @@ import {MessagesModule} from "primeng/messages";
     ToastModule,
     MessageModule,
     MessagesModule,
+    StepsModule,
+    MatStepperModule,
+    InputTextModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true},],

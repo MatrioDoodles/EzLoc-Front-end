@@ -1,0 +1,126 @@
+<section class="ftco-section card" style="background-image: url(../../assets/imgs/background.png);
+                                     background-size: cover;
+                                     overflow: hidden;
+                                     min-height: 100vh;">
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 text-center mb-5">
+      <h2 class="heading-section writing-font">Assistant de Configuration</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center" style="margin-top:3%">
+    <div class="col-md-12 col-lg-12">
+
+      <div class="wrap">
+        <mat-stepper linear #stepper>
+          <mat-step  [editable]="true">
+            <ng-template matStepLabel class="writing-font">Bienvenue</ng-template>
+            <img src="../../assets/gifs/welcome.gif" style="border-radius: 25px; margin: 20px auto; " class="row justify-content-center img-fluid"/>
+            <p class="row justify-content-center writing-font">Bienvenue</p>
+            <div class="row justify-content-center">
+              <button matStepperNext pButton pRipple type="button" label="Commençer la configuration" class="writing-font p-button-rounded "></button>
+            </div>
+          </mat-step>
+          <mat-step [stepControl]="enterpriseForm"  [editable]="true">
+            <ng-template matStepLabel class="writing-font">Création de votre entreprise</ng-template>
+            <form [formGroup]="enterpriseForm">
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+              <div class="form-group mb-3">
+                <label class="label writing-font" >Raison Sociale</label>
+                <input type="text" class="form-control" formControlName="name" placeholder="Raison Sociale" style="height: 48px" required>
+              </div>
+              <div class="form-group mb-3">
+                <label class="label writing-font" >Téléphone</label>
+                <input type="text" class="form-control" formControlName="phone" placeholder="Téléphone" style="height: 48px" required>
+              </div>
+              <div class="form-group mb-3">
+                <label class="label writing-font" >Adresse Email</label>
+                <input type="text" class="form-control" formControlName="mail" placeholder="Email" style="height: 48px" required>
+              </div>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <div class="form-group mb-3">
+                  <label class="label writing-font" >Description</label>
+                  <textarea class="form-control" formControlName="description" placeholder="Description" rows="9" required></textarea>
+                </div>
+              </div>
+            </div>
+              <div class="row">
+                <div class="col-lg-6 col-md-12">
+                <div class="form-group mb-3">
+                  <label class="label writing-font" >Site web</label>
+                  <input type="text" class="form-control" formControlName="website" placeholder="Site Web" style="height: 48px" required>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="label writing-font" >Téléphone Fix</label>
+                  <input type="text" class="form-control" formControlName="landLineNumber" placeholder="Téléphone Fix" style="height: 48px" required>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="label writing-font" >Numéro Fax</label>
+                  <input type="text" class="form-control" formControlName="fax" placeholder="Numéro Fax" style="height: 48px" required>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="label writing-font" >Adresse</label>
+                  <input type="text" class="form-control" formControlName="adress" placeholder="Adresse" style="height: 48px" required>
+                </div>
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >Nombre du registre</label>
+                    <input type="text" class="form-control" formControlName="registryNumber" placeholder="Nombre du registre" style="height: 48px" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >Id Fiscale</label>
+                    <input type="text" class="form-control" formControlName="fiscalId" placeholder="Id Fiscale" style="height: 48px" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >Immatriculation</label>
+                    <input type="text" class="form-control" formControlName="immatriculation" placeholder="Nombre du registre" style="height: 48px" required>
+                  </div>
+              </div>
+
+              <div class="col-md-12 col-lg-6">
+
+                <div class="form-group mb-3">
+                  <label class="label writing-font" >Ville</label>
+                  <input type="text" class="form-control" formControlName="city" placeholder="Ville" style="height: 48px" required>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="label writing-font" >Banque</label>
+                  <input type="text" class="form-control" formControlName="bank" placeholder="Ville" style="height: 48px" required>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="label writing-font" >Aperçu Logo</label>
+                  <div style="height: 340px; border: solid 1px #ced4da; border-radius: 25px;">
+                    <img *ngIf="imageSrc" [src]="imageSrc" class="img-fluid" style="border-radius: 25px; height:100%;"/>
+                    <p class="writing-font" *ngIf="!imageSrc"> Pas encore d'image</p>
+                  </div>
+                </div>
+                <div class="form-group mb-3">
+                  <label class="label writing-font" >Logo</label>
+                  <div class="custom-file">
+                    <input (change)="imgSelected($event)" type="file" formControlName="logo" class="custom-file-input" accept="image/*">
+                    <label class="custom-file-label">Sélectionner une image</label>
+                  </div>
+                </div>
+              </div>
+              </div>
+            <div class="row justify-content-center">
+              <button matStepperPrevious pButton pRipple type="button" label="Précedent" class="writing-font p-button-rounded button-info col-md-12 col-lg-6"></button>
+              <button matStepperNext pButton pRipple type="button" label="Suivant" class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
+            </div>
+            </form>
+          </mat-step>
+          <mat-step>
+
+          </mat-step>
+          <mat-step>
+
+          </mat-step>
+
+        </mat-stepper>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>

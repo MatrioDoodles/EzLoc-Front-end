@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {AuthenticationService} from "../services/authentication.service";
+import {AuthenticationService} from "../services/auth-services/authentication.service";
 import {MessageService} from 'primeng/api';
 
 @Component({

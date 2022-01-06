@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Route, RouterModule, Routes } from '@angular/router';
+import { FirstTimeSetupComponent } from './first-time-setup/first-time-setup.component';
 import { LoginComponent } from './login/login.component';
 import { PrimaryComponent } from './primary/primary.component';
 
@@ -16,6 +17,8 @@ const routes: Routes = [
     pathMatch: 'full' },
     { path: 'login',
     component: LoginComponent },
+  { path: 'first-time-setup',
+    component: FirstTimeSetupComponent },
   {
     path: 'ezlocprimary',
     component: PrimaryComponent,
