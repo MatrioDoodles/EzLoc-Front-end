@@ -75,7 +75,7 @@
                   </div>
                   <div class="form-group mb-3">
                     <label class="label writing-font" >Immatriculation</label>
-                    <input type="text" class="form-control" formControlName="immatriculation" placeholder="Nombre du registre" style="height: 48px" required>
+                    <input type="text" class="form-control" formControlName="immatriculation" placeholder="Immatriculation" style="height: 48px" required>
                   </div>
               </div>
 
@@ -83,17 +83,22 @@
 
                 <div class="form-group mb-3">
                   <label class="label writing-font" >Ville</label>
-                  <input type="text" class="form-control" formControlName="city" placeholder="Ville" style="height: 48px" required>
+                  <select class="form-control" formControlName="city" style="height: 48px" required>
+                    <option selected>Choose...</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
                 </div>
                 <div class="form-group mb-3">
                   <label class="label writing-font" >Banque</label>
-                  <input type="text" class="form-control" formControlName="bank" placeholder="Ville" style="height: 48px" required>
+                  <input type="text" class="form-control" formControlName="bank" placeholder="Banque" style="height: 48px" required>
                 </div>
                 <div class="form-group mb-3">
                   <label class="label writing-font" >Aperçu Logo</label>
                   <div style="height: 340px; border: solid 1px #ced4da; border-radius: 25px;">
-                    <img *ngIf="imageSrc" [src]="imageSrc" class="img-fluid" style="border-radius: 25px; height:100%;"/>
-                    <p class="writing-font" *ngIf="!imageSrc"> Pas encore d'image</p>
+                    <img *ngIf="imageSrc" [src]="imageSrc" class="img-fluid" style="border-radius: 25px; height:100%; width:100%;"/>
+                    <p class="writing-font d-flex justify-content-center align-items-center" *ngIf="!imageSrc"> Pas encore d'image</p>
                   </div>
                 </div>
                 <div class="form-group mb-3">
@@ -106,16 +111,64 @@
               </div>
               </div>
             <div class="row justify-content-center">
-              <button matStepperPrevious pButton pRipple type="button" label="Précedent" class="writing-font p-button-rounded button-info col-md-12 col-lg-6"></button>
-              <button matStepperNext pButton pRipple type="button" label="Suivant" class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
+              <button matStepperPrevious pButton pRipple  type="button" label="Précedent" class="writing-font p-button-rounded button-info col-md-12 col-lg-6"></button>
+              <button matStepperNext pButton pRipple [disabled]="!enterpriseForm.valid" type="button" label="Suivant" class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
             </div>
             </form>
           </mat-step>
-          <mat-step>
-
+          <mat-step [stepControl]="settingsForm" [editable]="true">
+            <ng-template matStepLabel class="writing-font">Paramétrage de votre experience</ng-template>
+            <form [formGroup]="settingsForm">
+              <div class="row justify-content-center">
+                <div class="col-md-12 col-lg-6">
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >TVA</label>
+                    <input type="text" class="form-control" formControlName="tva" placeholder="TVA" style="height: 48px" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >Valeur TVA</label>
+                    <input type="text" class="form-control" formControlName="tvaValue" placeholder="Valeur TVA" style="height: 48px" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >Devise</label>
+                    <input type="text" class="form-control" formControlName="currency" placeholder="Devise" style="height: 48px" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >Acronym</label>
+                    <input type="text" class="form-control" formControlName="acronym" placeholder="Acronym" style="height: 48px" required>
+                  </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >Préfixe Client</label>
+                    <input type="text" class="form-control" formControlName="clientPrefix" placeholder="Préfixe Client" style="height: 48px" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >Préfixe Voiture</label>
+                    <input type="text" class="form-control" formControlName="carPrefix" placeholder="Préfixe Voiture" style="height: 48px" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >Préfixe Reservation</label>
+                    <input type="text" class="form-control" formControlName="reservationPrefix" placeholder="Préfixe Réservation" style="height: 48px" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >Préfixe Facture</label>
+                    <input type="text" class="form-control" formControlName="invoicePrefix" placeholder="Préfixe Facture" style="height: 48px" required>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="label writing-font" >Préfixe Contract</label>
+                    <input type="text" class="form-control" formControlName="contractPrefix" placeholder="Préfixe Contract" style="height: 48px" required>
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-center">
+                <button matStepperPrevious pButton pRipple  type="button" label="Précedent" class="writing-font p-button-rounded button-info col-md-12 col-lg-6"></button>
+                <button matStepperNext pButton pRipple [disabled]="!settingsForm.valid" type="button" label="Suivant" class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
+              </div>
+            </form>
           </mat-step>
           <mat-step>
-
+            <ng-template matStepLabel class="writing-font">Confirmation</ng-template>
           </mat-step>
 
         </mat-stepper>

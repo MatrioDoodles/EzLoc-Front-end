@@ -10,6 +10,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 })
 export class FirstTimeSetupComponent implements OnInit {
   imageSrc: string;
+  cities:string[];
   constructor(
     private formBuilder: FormBuilder,) { }
   items: MenuItem[];
@@ -29,9 +30,21 @@ export class FirstTimeSetupComponent implements OnInit {
     immatriculation: ["", Validators.required],
     logo: ["", Validators.required],
   })
+  settingsForm = this.formBuilder.group({
+    tva: ["", Validators.required],
+    tvaValue: ["", Validators.required],
+    currency: ["", Validators.required],
+    acronym: ["", Validators.required],
+    clientPrefix: ["", Validators.required],
+    carPrefix: ["", Validators.required],
+    reservationPrefix: ["", Validators.required],
+    invoicePrefix: ["", Validators.required],
+    contractPrefix: ["", Validators.required],
+  })
 
 
   ngOnInit(): void {
+    this.cities = []
     this.items = [
       {label: 'Premier Paramétrage'},
       {label: 'Confirmation'}

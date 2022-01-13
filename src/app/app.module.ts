@@ -17,6 +17,7 @@ import {MessagesModule} from "primeng/messages";
 import { FirstTimeSetupComponent } from './first-time-setup/first-time-setup.component';
 import {StepsModule} from "primeng/steps";
 import {MatStepperModule} from '@angular/material/stepper';
+import {CascadeSelectModule} from "primeng/cascadeselect";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     StepsModule,
     MatStepperModule,
     InputTextModule,
+    CascadeSelectModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true},],
