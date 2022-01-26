@@ -44,6 +44,7 @@ import {CascadeSelectModule} from "primeng/cascadeselect";
     MatStepperModule,
     InputTextModule,
     CascadeSelectModule,
+    BrowserAnimationsModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true},],

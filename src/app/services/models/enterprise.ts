@@ -1,4 +1,6 @@
-class Enterprise{
+import {Settings} from "./settings";
+
+export class Enterprise{
 
   public id:number;
   public logo:string;

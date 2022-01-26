@@ -1,0 +1,78 @@
+<div *ngIf="showLoader" class="dimPage">
+  <p-progressSpinner
+    style="position: absolute;
+  left: 40%;
+  top: 40%;" ></p-progressSpinner>
+</div>
+<form  [formGroup]="userControl" (ngSubmit)="submit()">
+<div class="card center-card" >
+  <div class="card-header" style="padding: 20px;">
+    <p style="color: #7e1727; font-weight: bold; text-decoration: underline; text-align: center;font-size: x-large">  {{btnname}} un agent </p>
+  </div>
+
+  <div class="card-body">
+    <div class="alert alert-warning" *ngIf="userControl.dirty && userControl.invalid">Veuillez Renseigner tous les champs</div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Login de l'agent</mat-label>
+          <input matInput formControlName="username" name="username" required>
+        </mat-form-field>
+        <mat-form-field  appearance="outline" class="col">
+          <mat-label>Mot de passe de l'agent</mat-label>
+          <input matInput formControlName="password" name="password">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Nom de l'agent</mat-label>
+          <input matInput formControlName="name" name="name" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Prénom de l'agent</mat-label>
+          <input matInput formControlName="surname" name="surname" required>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Téléphone de l'agent</mat-label>
+          <input matInput formControlName="phone" name="phone" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Email de l'agent</mat-label>
+          <input matInput formControlName="mail" name="email" required>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Adresse de l'agent</mat-label>
+          <input matInput formControlName="adress" name="adress" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="example-full-width col">
+          <mat-label>Ville de l'agent</mat-label>
+          <input type="text"
+                 placeholder="Choissisez une ville"
+                 aria-label="Villes"
+                 matInput
+                 formControlName="city"
+                 [matAutocomplete]="auto">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+
+  </div>
+  <div class="card-footer" >
+    <button mat-stroked-button [disabled]="!userControl.valid" class="btn-color">{{btnname}}</button>
+
+    <button mat-stroked-button routerLink="/ezlocprimary/primary-module/users" >Annuler</button>
+  </div>
+</div>
+</form>
+<p-toast position="top-right"></p-toast>
+
+
+

@@ -112,7 +112,7 @@
               </div>
             <div class="row justify-content-center">
               <button matStepperPrevious pButton pRipple  type="button" label="Précedent" class="writing-font p-button-rounded button-info col-md-12 col-lg-6"></button>
-              <button matStepperNext pButton pRipple [disabled]="!enterpriseForm.valid" type="button" label="Suivant" class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
+              <button matStepperNext pButton pRipple (click)="generateEnterprisePayload()" [disabled]="!enterpriseForm.valid" type="button" label="Suivant" class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
             </div>
             </form>
           </mat-step>
@@ -163,12 +163,15 @@
               </div>
               <div class="row justify-content-center">
                 <button matStepperPrevious pButton pRipple  type="button" label="Précedent" class="writing-font p-button-rounded button-info col-md-12 col-lg-6"></button>
-                <button matStepperNext pButton pRipple [disabled]="!settingsForm.valid" type="button" label="Suivant" class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
+                <button matStepperNext pButton pRipple (click)="generateSettingsPayload()" [disabled]="!settingsForm.valid" type="button" label="Suivant" class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
               </div>
             </form>
           </mat-step>
           <mat-step>
             <ng-template matStepLabel class="writing-font">Confirmation</ng-template>
+            <div class="row justify-content-center">
+              <button (click)="submit()" pButton pRipple type="button" label="Finir La Configuration" class="writing-font p-button-rounded "></button>
+            </div>
           </mat-step>
 
         </mat-stepper>

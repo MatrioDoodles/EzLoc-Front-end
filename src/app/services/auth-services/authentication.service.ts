@@ -3,6 +3,7 @@ import {EventEmitter, Injectable, Output} from '@angular/core';
 import { API_URL_DEV } from 'src/app/app.const';
 import { map } from 'rxjs/operators';
 import {Subject} from "rxjs";
+import {UserService} from "../services/user.service";
 
 
 export const TOKEN = 'token'
@@ -17,7 +18,7 @@ export class AuthenticationService {
   @Output() getLoggedIn: EventEmitter<any> = new EventEmitter();
   constructor(
     private httpClient: HttpClient,
-   //private userService:UserService
+   private userService:UserService
               ) { }
 
   isUserLogged(){
@@ -38,13 +39,23 @@ export class AuthenticationService {
                   data =>{
                     sessionStorage.setItem(AUTHENTICATED_USER,username);
                     sessionStorage.setItem(TOKEN,`Bearer ${data.token}`);
-                    this.getLoggedIn.emit(true);
-                    /*this.userService.getUserByUsername(username).subscribe(
-                      response => {
+                    this.userService.getByUsername(username).subscribe(
+                      (response:any) => {
                         sessionStorage.setItem('role',response.role.label);
-
+                        sessionStorage.setItem('id',response.id);
+                        console.log(response.enterprise);
+                        if(response.enterprise === null || response.enterprise === undefined) {
+                          sessionStorage.setItem('new','yes');
+                        }
+                        else {
+                          sessionStorage.setItem('new','no');
+                        }
+                        if(response.activated === false)
+                          sessionStorage.setItem('activated','false');
+                        else
+                          sessionStorage.setItem('activated','true');
                       }
-                    )*/
+                    )
                     return data;
                   }
                 )

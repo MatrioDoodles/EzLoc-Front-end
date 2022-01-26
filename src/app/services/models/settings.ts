@@ -1,4 +1,6 @@
-class Settings{
+import {Enterprise} from "./enterprise";
+
+export class Settings{
   public id:number;
   public tva:boolean;
   public tvaValue:number;

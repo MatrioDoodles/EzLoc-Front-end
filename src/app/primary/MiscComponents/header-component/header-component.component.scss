@@ -4,6 +4,16 @@
     align-items: center;
 }
 
-::ng-deep .p-menubar .p-menubar-button {
+
+
+::ng-deep .p-menubar {
+  background : linear-gradient(to right,#4B00C6,#F9F871)
+}
+
+@media screen and (max-width: 600px) {
+  .hide {
+
+    visibility: hidden;
     display: none;
   }
+}

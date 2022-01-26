@@ -1,4 +1,7 @@
-class User{
+import {Role} from "./role";
+import {Enterprise} from "./enterprise";
+
+export class User{
 
     public id:number;
     public name:string;
@@ -10,4 +13,6 @@ class User{
     public password:string;
     public city:string;
     public role:Role;
+    public activated:boolean;
+    public enterprise:Enterprise;
 }

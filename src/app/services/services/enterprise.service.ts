@@ -1,6 +1,7 @@
 import {Injectable} from "@angular/core";
 import { API_URL_DEV } from 'src/app/app.const';
 import { HttpClient } from '@angular/common/http';
+import {Enterprise} from "../models/enterprise";
 
 @Injectable({
   providedIn: 'root'

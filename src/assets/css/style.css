@@ -8326,7 +8326,7 @@ h1, h2, h3, h4, h5,
   .btn:hover, .btn:active, .btn:focus {
     outline: none; }
   .btn.btn-primary {
-    background: #3123AE !important;
+    background: linear-gradient(to right,#4B00C6,#F9F871) !important;
     border: 1px solid #3123AE !important;
     color: #fff !important; }
     .btn.btn-primary:hover {

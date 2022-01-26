@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormComponentComponent } from './form-component.component';
+import { ListAgentsComponent } from './list-agents.component';
 
-describe('FormComponentComponent', () => {
-  let component: FormComponentComponent;
-  let fixture: ComponentFixture<FormComponentComponent>;
+describe('ListAgentsComponent', () => {
+  let component: ListAgentsComponent;
+  let fixture: ComponentFixture<ListAgentsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormComponentComponent ]
+      declarations: [ ListAgentsComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormComponentComponent);
+    fixture = TestBed.createComponent(ListAgentsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

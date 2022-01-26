@@ -1,21 +1,18 @@
-<p-menubar>
-    <ng-template pTemplate="start">
-      <div class="flex align-items-center flex-wrap">
-      <button pButton type="button" (click)="display = true" class="center-bub p-button-text" icon="fas fa-bars"></button>
-      <img src="../../../../../assets/imgs/Website logo.png" height="30%" width="30%"  class="">
-    </div>
-    </ng-template>
-    <ng-template pTemplate="end">
-      <button pButton pRipple label="Logout" icon="pi pi-power-off" (click)="logout()" class="p-button-rounded p-button-danger"></button>
-    </ng-template>
+<p-menubar [model]="items">
+  <ng-template pTemplate="start" >
+    <img src="../../../../assets/imgs/logo.png" height="50" class="mr-2">
+  </ng-template>
+  <ng-template pTemplate="end">
+    <button pButton pRipple label="Logout" icon="pi pi-power-off" (click)="logout()" class="p-button-rounded p-button-danger"></button>
+  </ng-template>
+</p-menubar>
 
-  </p-menubar>
-  <p-sidebar [(visible)]="display">
-    <app-menu-component></app-menu-component>
-</p-sidebar>
+<!--p-sidebar [(visible)]="display">
+  <app-menu-component></app-menu-component>
+</p-sidebar-->
 
-<!--p-panelMenu  [model]="items" [style]="{'width':'2.5%'}"></p-panelMenu-->
-<p-dock [model]="items" position="left">
+
+<p-dock [model]="dockItems" position="bottom" class="fixed-bottom hide">
   <ng-template pTemplate="item" let-item>
       <img [src]="item.icon" [alt]="item.label" width="100%">
   </ng-template>
