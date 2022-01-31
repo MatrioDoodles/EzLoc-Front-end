@@ -65,6 +65,11 @@
         </th>
         <th>
           <div class="p-d-flex p-jc-between p-ai-center">
+            Activé
+          </div>
+        </th>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
             Actions
           </div>
         </th>
@@ -100,6 +105,14 @@
 
         <td>
           {{user.city}}
+        </td>
+        <td *ngIf="user.activated">
+          Activé
+          <button pButton type="button" (click)="activation(user.id,false)" style="margin : 5px" class="p-button-danger p-button-rounded" icon="pi pi-times"></button>
+        </td>
+        <td *ngIf="!user.activated">
+          Désactivé
+          <button pButton type="button" (click)="activation(user.id,true)" style="margin : 5px" class="p-button-success p-button-rounded" icon="pi pi-check-circle"></button>
         </td>
 
         <td  style="text-align:center">

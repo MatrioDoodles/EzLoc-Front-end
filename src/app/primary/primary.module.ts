@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { PrimaryRoutingModule } from './primary-routing.module';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { PrimaryComponent } from './primary.component';
-import { MenuComponentComponent } from './MiscComponents/menu-component/menu-component.component';
-import { WelcomeComponentComponent } from './MiscComponents/welcome-component/welcome-component.component';
+import { MenuComponentComponent } from './MiscComponents/menu/menu-component.component';
+import { WelcomeComponentComponent } from './MiscComponents/welcome/welcome-component.component';
 import { PanelModule } from 'primeng/panel';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
-import { HeaderComponentComponent } from './MiscComponents/header-component/header-component.component';
+import { HeaderComponentComponent } from './MiscComponents/header/header-component.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { DockModule } from 'primeng/dock';
 import { MainComponentComponent } from './DashboardComponents/main-component/main-component.component';
@@ -24,6 +24,8 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { SettingsComponent } from './MiscComponents/settings/settings.component';
+import {TabViewModule} from "primeng/tabview";
 
 
 
@@ -35,7 +37,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     HeaderComponentComponent,
     MainComponentComponent,
     AddAgentComponent,
-    ListAgentsComponent
+    ListAgentsComponent,
+    SettingsComponent
   ],
   imports: [
     CommonModule,
@@ -57,6 +60,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     MatInputModule,
     MatButtonModule,
     ProgressSpinnerModule,
+    TabViewModule,
 
   ]
 })

@@ -99,8 +99,9 @@ export class HeaderComponentComponent implements OnInit {
         icon: 'fas fa-chart-pie',
     },
     {
-        label: 'Paramètres',
+        label: 'Options',
         icon: 'fas fa-cogs',
+      routerLink: "/ezlocprimary/primary-module/options",
 
     },
   ];
@@ -108,10 +109,12 @@ export class HeaderComponentComponent implements OnInit {
       {
         label: 'Tableau de Bord',
         icon: '../../../../assets/icones/accueil.svg',
+        routerLink: "/ezlocprimary/primary-module/welcome",
       },
       {
         label: 'Agents',
         icon: '../../../../assets/icones/agent.png',
+        routerLink: "/ezlocprimary/primary-module/users",
       },
       {
         label: 'Agences',
@@ -134,8 +137,9 @@ export class HeaderComponentComponent implements OnInit {
         icon: '../../../../assets/icones/camembert.gif',
       },
       {
-        label: 'Paramètres',
+        label: 'Options',
         icon: '../../../../assets/icones/services.gif',
+        routerLink: "/ezlocprimary/primary-module/options",
 
       },
     ];

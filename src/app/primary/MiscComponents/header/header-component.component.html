@@ -8,11 +8,11 @@
 </p-menubar>
 
 <!--p-sidebar [(visible)]="display">
-  <app-menu-component></app-menu-component>
+  <app-menu></app-menu>
 </p-sidebar-->
 
 
-<p-dock [model]="dockItems" position="bottom" class="fixed-bottom hide">
+<p-dock [model]="dockItems" position="right" class="hide">
   <ng-template pTemplate="item" let-item>
       <img [src]="item.icon" [alt]="item.label" width="100%">
   </ng-template>

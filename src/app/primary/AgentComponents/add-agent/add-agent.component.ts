@@ -103,14 +103,7 @@ export class AddAgentComponent implements OnInit {
     }
     else {
       this.userService.update(this.User,Number(this.route.snapshot.params['id'])).subscribe(
-        (resp:any) => {
-          this.messageService.add({severity:'success', summary:'Agent Enregistré', detail:"L'agent a été enregistré avec succès"});
-          setTimeout(() =>{
-            this.router.navigate(['ezlocprimary/primary-module/users']);
-            this.showLoader = false;
-          },1500);
-
-        },
+        (resp:any) => {},
       (error:HttpErrorResponse)=>{
           if(error.status === 404 || error.status === 500) {
             this.messageService.add({severity: 'error', summary: 'Erreur', detail: "Une erreur est survenu"});

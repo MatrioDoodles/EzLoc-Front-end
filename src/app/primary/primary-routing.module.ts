@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WelcomeComponentComponent } from './MiscComponents/welcome-component/welcome-component.component';
+import { WelcomeComponentComponent } from './MiscComponents/welcome/welcome-component.component';
 import {AddAgentComponent} from "./AgentComponents/add-agent/add-agent.component";
 import {ListAgentsComponent} from "./AgentComponents/list-agents/list-agents.component";
+import {SettingsComponent} from "./MiscComponents/settings/settings.component";
 
 
 const primaryRoutes: Routes = [
@@ -10,6 +11,7 @@ const primaryRoutes: Routes = [
   { path: 'users', component: ListAgentsComponent },
   { path: 'addUser', component: AddAgentComponent},
   { path: 'addUser/:id', component: AddAgentComponent},
+  { path: 'options', component: SettingsComponent},
 ];
 
 @NgModule({

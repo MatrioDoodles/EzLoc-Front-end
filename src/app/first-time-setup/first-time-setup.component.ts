@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MenuItem, MessageService} from "primeng/api";
+import {MessageService} from "primeng/api";
 import {FormBuilder, Validators} from "@angular/forms";
 import {Enterprise} from "../services/models/enterprise";
 import {Settings} from "../services/models/settings";
@@ -8,6 +8,8 @@ import {SettingsService} from "../services/services/settings.service";
 import {EnterpriseService} from "../services/services/enterprise.service";
 import {User} from "../services/models/user";
 import {UserService} from "../services/services/user.service";
+import {map, startWith} from "rxjs/operators";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -21,7 +23,13 @@ export class FirstTimeSetupComponent implements OnInit {
   settings:Settings;
   user:User;
   imageSrc: string;
-  cities:string[];
+  villes: string[] =  [
+    'AGADIR', 'BENI MELLAL', 'BERKANE', 'CASABLANCA', 'ELJADIDA', 'FES', 'INEZGANE', 'KENITRA', 'KHEMISSET', 'KHENIFRA',
+    'SETTAT', 'KHOURIBGA', 'LAAYOUNE', 'MARRAKECH', 'MEKNES', 'MOHAMMADIA', 'NADOR', 'OUJDA', 'RABAT', 'SAFI', 'SALE',
+    'SIDI KACEM', 'TANGER', 'TAZA', 'TEMARA', 'TETOUAN', 'AL HOCEIMA', 'BERRECHID', 'ERRACHIDIA', 'ESSAOUIRA', 'OUARZAZATE',
+    'OUEZZANE', 'SEFROU', 'TIFLET', 'TAROUDANT', 'CHAOUEN', 'MIDELT', 'SIDI SLIMANE', 'MIDELT'
+  ];
+  filteredOptions: Observable<string[]>;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -29,7 +37,6 @@ export class FirstTimeSetupComponent implements OnInit {
     private enterpriseService:EnterpriseService,
     private messageService: MessageService,
     private userService: UserService,) { }
-  items: MenuItem[];
   enterpriseForm = this.formBuilder.group({
     name: ["", Validators.required],
     description: ["", Validators.required],
@@ -60,11 +67,15 @@ export class FirstTimeSetupComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.cities = []
-    this.items = [
-      {label: 'Premier Paramétrage'},
-      {label: 'Confirmation'}
-    ];
+    this.filteredOptions = this.enterpriseForm.controls['city'].valueChanges.pipe(
+      startWith(''),
+      map((value:any) => this._filter(value))
+    );
+  }
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.villes.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
   //Image preview
   imgSelected(event:any){
