@@ -11,12 +11,12 @@ import {HttpErrorResponse} from "@angular/common/http";
 
 
 @Component({
-  selector: 'app-add-agent',
-  templateUrl: './add-agent.component.html',
-  styleUrls: ['./add-agent.component.scss'],
+  selector: 'app-agent-form',
+  templateUrl: './agent-form.component.html',
+  styleUrls: ['./agent-form.component.scss'],
   providers :[MessageService]
 })
-export class AddAgentComponent implements OnInit {
+export class AgentFormComponent implements OnInit {
 
   User: User
   btnname: string;
@@ -28,7 +28,6 @@ export class AddAgentComponent implements OnInit {
     'OUEZZANE', 'SEFROU', 'TIFLET', 'TAROUDANT', 'CHAOUEN', 'MIDELT', 'SIDI SLIMANE', 'MIDELT'
   ];
   filteredOptions: Observable<string[]>;
-  myControl = new FormControl();
   userControl = this.formBuilder.group({
     name: ["", Validators.required],
     surname: ["", Validators.required],

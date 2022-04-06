@@ -1,3 +1,8 @@
 .writing-font{
   font-family:AudioWide;
 }
+
+::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+  background : linear-gradient(to left,#4B00C6,#F9F871);
+  border-color:  #4B00C6;
+}

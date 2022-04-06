@@ -1,5 +1,5 @@
 <h2 class="writing-font d-flex justify-content-center">Options</h2>
-<p-tabView style="height: 80%;">
+<p-tabView>
   <p-tabPanel header="Paramétre du compte" leftIcon="pi pi-user">
     <!--div *ngIf="showLoader" class="dimPage">
       <p-progressSpinner
@@ -7,13 +7,13 @@
   left: 40%;
   top: 40%;" ></p-progressSpinner>
     </div-->
-          <p-tabView style="height: 80%;">
+          <p-tabView>
             <p-tabPanel header="Informations personelle" leftIcon="pi pi-user">
               <form  [formGroup]="userControl">
               <div class="card center-card" >
                 <div class="card-body">
               <div class="row">
-                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-end">
+                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-center">
                   Nom
                 </div>
                 <mat-form-field appearance="outline" class="col-md-8 col-lg-6  ">
@@ -23,7 +23,7 @@
                 <div class="col-md-4 col-lg-3"></div>
               </div>
               <div class="row">
-                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-end">
+                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-center">
                   Prénom
                 </div>
                 <mat-form-field appearance="outline" class="col-md-8 col-lg-6">
@@ -33,7 +33,7 @@
                 <div class="col-md-4 col-lg-3"></div>
               </div>
               <div class="row">
-                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-end">
+                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-center">
                   Téléphone
                 </div>
                 <mat-form-field appearance="outline" class="col-md-8 col-lg-6">
@@ -43,7 +43,7 @@
                 <div class="col-md-4 col-lg-3"></div>
               </div>
               <div class="row">
-                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-end">
+                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-center">
                   Email
                 </div>
                 <mat-form-field appearance="outline" class="col-md-8 col-lg-6" >
@@ -53,7 +53,7 @@
                 <div class="col-md-4 col-lg-3"></div>
               </div>
               <div class="row">
-                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-end">
+                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-center">
                   Adresse
                 </div>
                 <mat-form-field appearance="outline" class="col-md-8 col-lg-6">
@@ -63,7 +63,7 @@
                 <div class="col-md-4 col-lg-3"></div>
               </div>
               <div class="row">
-                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-end">
+                <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-center">
                   Ville
                 </div>
                 <mat-form-field appearance="outline" class="example-full-width col-md-8 col-lg-6">
@@ -98,39 +98,50 @@
             <div class="card center-card" >
               <div class="card-body">
                 <div class="row">
-                  <div class="alert alert-warning" *ngIf="oldPasswordCheck">Votre Ancien Mot de passe est incorrecte</div>
+                  <div class="alert alert-danger" *ngIf="oldPasswordCheck">Votre Ancien Mot de passe est incorrecte</div>
                 </div>
           <div class="row">
-            <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-end">
+            <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-center">
               Ancien Mot de passe
             </div>
             <mat-form-field  appearance="outline" class="col-md-12 col-lg-7">
               <mat-label>Ancien Mot de passe</mat-label>
-              <input matInput formControlName="oldPassword" name="password">
+              <input matInput formControlName="oldPassword" name="OldPassword" [type]="hideOld ? 'password' : 'text'">
+              <button mat-icon-button matSuffix (click)="hideOld = !hideOld" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideOld">
+                <mat-icon>{{hideOld ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
             </mat-form-field>
             <div class="col-md-12 col-lg-2"></div>
           </div>
             <div class="row">
-              <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-end">
+              <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-center">
                 Nouveau Mot de passe
               </div>
               <mat-form-field  appearance="outline" class="col-md-12 col-lg-7">
                 <mat-label>Nouveau Mot de passe</mat-label>
-                <input (input)="checkingPasswordFields()" matInput formControlName="newPassword" name="password">
+                <input (input)="checkingPasswordFields()" matInput formControlName="newPassword" name="newPassword" [type]="hideNew ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hideNew = !hideNew" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideNew">
+                  <mat-icon>{{hideNew ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
               </mat-form-field>
               <div class="col-md-12 col-lg-2 writing-font ">
-                <strong>
-
+                <strong *ngIf="newPasswordCheck" style="color: red">
+                  Le Mot de passe saisie different de l'ancien Mot de passe
                 </strong>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-end">
+              <div class="col-md-12 col-lg-3 writing-font d-flex align-items-center justify-content-center">
                 Confirmer Mot de passe
               </div>
               <mat-form-field  appearance="outline" class="col-md-12 col-lg-7">
                 <mat-label>Confirmer Mot de passe</mat-label>
-                <input (input)="checkingPasswordFields()" matInput formControlName="newPasswordConfirmation" name="password">
+                <input (input)="checkingPasswordFields()" matInput formControlName="newPasswordConfirmation" name="newPasswordConfirmation"
+                       [type]="hideConfirmation ? 'password' : 'text'">
+                <button mat-icon-button matSuffix (click)="hideConfirmation = !hideConfirmation" [attr.aria-label]="'Hide password'"
+                        [attr.aria-pressed]="hideConfirmation">
+                  <mat-icon>{{hideConfirmation ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
               </mat-form-field>
               <div class="col-md-12 col-lg-2">
                 <strong *ngIf="passwordControl.dirty && !passwordCheck" style="color: red">
@@ -140,7 +151,8 @@
             </div>
               </div>
             <div class="card-footer d-flex justify-content-center">
-              <button pButton pRipple (click)="passwordChange()" [disabled]="!passwordControl.valid && passwordCheck" type="button" icon="pi pi-save" label="Sauvegarder"
+              <button pButton pRipple (click)="passwordChange()" [disabled]="!passwordControl.valid && !passwordCheck"
+                      type="button" icon="pi pi-save" label="Sauvegarder"
                       class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
             </div>
             </div>
@@ -150,84 +162,112 @@
 
   </p-tabPanel>
   <p-tabPanel header="Paramétre de l'entreprise" leftIcon="pi pi-building">
-    <form [formGroup]="enterpriseForm">
-      <div class="card center-card" >
-        <div class="card-body">
-      <div class="row">
-        <div class="col-lg-6 col-md-12">
-            <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-              <mat-label>Raison Sociale</mat-label>
-              <input matInput formControlName="name" name="name" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-              <mat-label>Téléphone</mat-label>
-              <input matInput formControlName="phone" name="phone" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-              <mat-label>Adresse Email</mat-label>
-              <input matInput formControlName="mail" name="mail" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-              <mat-label>Banque</mat-label>
-              <input matInput formControlName="bank" name="bank" required>
-            </mat-form-field>
-          <div class="form-group mb-3">
-            <label class="label writing-font" >Aperçu Logo</label>
-            <div style="height: 340px; border: solid 1px #ced4da; border-radius: 25px;">
-              <img *ngIf="imageSrc" [src]="imageSrc" class="img-fluid" style="border-radius: 25px; height:100%; width:100%;"/>
-              <p class="writing-font d-flex justify-content-center align-items-center" *ngIf="!imageSrc"> Pas encore d'image</p>
-            </div>
-          </div>
-          <div class="form-group mb-3">
-            <label class="label writing-font" >Logo</label>
-            <div class="custom-file">
-              <input (change)="imgSelected($event)" type="file" formControlName="logo" class="custom-file-input" accept="image/*">
-              <label class="custom-file-label">Sélectionner une image</label>
-            </div>
-          </div>
-        </div>
 
-        <div class="col-lg-6 col-md-12">
-            <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-              <mat-label>Site de l'agence</mat-label>
-              <input matInput formControlName="website" name="website" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-              <mat-label>Téléphone Fix</mat-label>
-              <input matInput formControlName="landLineNumber" name="landLineNumber" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-              <mat-label>Numéro Fax</mat-label>
-              <input matInput formControlName="fax" name="fax" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-              <mat-label>Adresse</mat-label>
-              <input matInput formControlName="adress" name="adress" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-              <mat-label>Numéro de registre</mat-label>
-              <input matInput formControlName="registryNumber" name="registryNumber" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-              <mat-label>Id Fiscale</mat-label>
-              <input matInput formControlName="fiscalId" name="fiscalId" required>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-              <mat-label>Immatriculation</mat-label>
-              <input matInput formControlName="immatriculation" name="immatriculation" required>
-            </mat-form-field>
-        </div>
+          <p-tabView>
+            <p-tabPanel header="Informations Généraux" leftIcon="pi pi-user">
+              <form [formGroup]="enterpriseFormGeneral">
+                <div class="card center-card" >
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-6 col-md-12">
+                        <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+                          <mat-label>Raison Sociale</mat-label>
+                          <input matInput formControlName="name" name="name" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+                          <mat-label>Téléphone</mat-label>
+                          <input matInput formControlName="phone" name="phone" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+                          <mat-label>Adresse Email</mat-label>
+                          <input matInput formControlName="mail" name="mail" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+                          <mat-label>Site de l'agence</mat-label>
+                          <input matInput formControlName="website" name="website" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+                          <mat-label>Téléphone Fix</mat-label>
+                          <input matInput formControlName="landLineNumber" name="landLineNumber" required>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-lg-6 col-md-12">
+                        <div class="form-group mb-3">
+                          <div style="height: 215px; border: solid 1px #ced4da; border-radius: 25px;">
+                            <img *ngIf="imageSrc" [src]="imageSrc" class="img-fluid" style="border-radius: 25px; height:100%; width:100%;"/>
+                            <p class="writing-font d-flex justify-content-center align-items-center" *ngIf="!imageSrc">Aperçu Logo</p>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3">
+                          <label class="label writing-font" >Logo</label>
+                          <div class="custom-file">
+                            <input (change)="imgSelected($event)" type="file" formControlName="logo" class="custom-file-input" accept="image/*">
+                            <label class="custom-file-label">Sélectionner une image</label>
+                          </div>
+                      </div>
+                        <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+                          <mat-label>Adresse</mat-label>
+                          <input matInput formControlName="adress" name="adress" required>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+                          <mat-label>Numéro Fax</mat-label>
+                          <input matInput formControlName="fax" name="fax" required>
+                        </mat-form-field>
+                      </div>
 
-      </div>
-        </div>
-      <div class="row justify-content-center">
-        <button pButton pRipple (click)="saveEnterprise()" [disabled]="!enterpriseForm.valid" type="button" label="Sauvegarder" class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
-      </div>
-      </div>
-    </form>
+                    </div>
+                  </div>
+                  <div class="card-footer d-flex justify-content-center">
+                    <button *ngIf="!updateEnterpriseGeneral" pButton pRipple (click)="saveEnterpriseGeneral()"
+                            [disabled]="!enterpriseFormGeneral.valid" type="button"
+                            label="Sauvegarder" class="writing-font p-button-rounded col-md-12 col-lg-6" icon="pi pi-save"></button>
+                    <button *ngIf="updateEnterpriseGeneral" pButton pRipple (click)="enableEnterpriseGeneralUpdate()" type="button" label="Modifier" icon="pi pi-pencil"
+                            class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
+                  </div>
+                </div>
+              </form>
+            </p-tabPanel>
+            <p-tabPanel header="Spécification Entreprise" leftIcon="pi pi-user">
+              <form [formGroup]="enterpriseFormSpecial">
+                <div class="card center-card" >
+                  <div class="card-body">
+                    <div class="row">
+              <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+                <mat-label>Numéro de registre</mat-label>
+                <input matInput formControlName="registryNumber" name="registryNumber" required>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+                <mat-label>Id Fiscale</mat-label>
+                <input matInput formControlName="fiscalId" name="fiscalId" required>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+                <mat-label>Immatriculation</mat-label>
+                <input matInput formControlName="immatriculation" name="immatriculation" required>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+                <mat-label>Banque</mat-label>
+                <input matInput formControlName="bank" name="bank" required>
+              </mat-form-field>
+                    </div>
+                  </div>
+                <div class="card-footer d-flex justify-content-center">
+                  <button *ngIf="!updateEnterpriseSpecial" pButton pRipple (click)="saveEnterpriseSpecial()"
+                          [disabled]="!enterpriseFormSpecial.valid" type="button"
+                          label="Sauvegarder" class="writing-font p-button-rounded col-md-12 col-lg-6" icon="pi pi-save"></button>
+                  <button *ngIf="updateEnterpriseSpecial" pButton pRipple (click)="enableEnterpriseSpecialUpdate()" type="button" label="Modifier" icon="pi pi-pencil"
+                          class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
+                </div>
+                </div>
+              </form>
+            </p-tabPanel>
+          </p-tabView>
+
   </p-tabPanel>
   <p-tabPanel header="Paramétre génerale" leftIcon="pi pi-cog">
     <form [formGroup]="settingsForm">
+      <div class="card center-card" >
+        <div class="card-body">
+          <div class="row">
       <div class="row justify-content-center">
         <div class="col-md-12 col-lg-6">
           <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
@@ -270,8 +310,15 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row justify-content-center">
-        <button pButton pRipple (click)="saveSettings()" [disabled]="!settingsForm.valid" type="button" label="Sauvegarder" class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
+          </div>
+        </div>
+      <div class="card-footer d-flex justify-content-center">
+        <button *ngIf="!updateSettings" pButton pRipple (click)="saveSettings()"
+                [disabled]="!enterpriseFormSpecial.valid" type="button"
+                label="Sauvegarder" class="writing-font p-button-rounded col-md-12 col-lg-6" icon="pi pi-save"></button>
+        <button *ngIf="updateSettings" pButton pRipple (click)="enableSettingsUpdate()" type="button" label="Modifier" icon="pi pi-pencil"
+                class="writing-font p-button-rounded col-md-12 col-lg-6"></button>
+      </div>
       </div>
     </form>
   </p-tabPanel>

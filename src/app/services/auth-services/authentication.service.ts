@@ -43,7 +43,6 @@ export class AuthenticationService {
                       (response:any) => {
                         sessionStorage.setItem('role',response.role.label);
                         sessionStorage.setItem('id',response.id);
-                        console.log(response.enterprise);
                         if(response.enterprise === null || response.enterprise === undefined) {
                           sessionStorage.setItem('new','yes');
                         }

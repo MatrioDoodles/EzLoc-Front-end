@@ -31,4 +31,7 @@ export class UserService {
   delete(id:number){
     return this.httpClient.delete(`${API_URL_DEV}/users/${id}`);
   }
+  updatePassword(pass:string,id:number) {
+      return this.httpClient.put(`${API_URL_DEV}/users/${id}/passwordChange`, pass);
+  }
 }

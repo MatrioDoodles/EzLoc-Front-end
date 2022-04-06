@@ -26,6 +26,20 @@ export class EnterpriseService {
   delete(id:number){
     return this.httpClient.delete(`${API_URL_DEV}/enterprises/${id}`);
   }
-
+  allCars(id:number){
+    return this.httpClient.get(`${API_URL_DEV}/enterprises/${id}/cars`);
+  }
+  allClients(id:number){
+    return this.httpClient.get(`${API_URL_DEV}/enterprises/${id}/clients`);
+  }
+  allMetrics(id:number){
+    return this.httpClient.get(`${API_URL_DEV}/enterprises/${id}/metrics`);
+  }
+  allUsers(id:number){
+    return this.httpClient.get(`${API_URL_DEV}/enterprises/${id}/users`);
+  }
+  allReservation(id:number){
+    return this.httpClient.get(`${API_URL_DEV}/enterprises/${id}/reservations`);
+  }
 
 }

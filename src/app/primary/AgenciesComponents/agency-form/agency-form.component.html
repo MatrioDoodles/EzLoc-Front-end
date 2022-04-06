@@ -1,0 +1,62 @@
+<div *ngIf="showLoader" class="dimPage">
+  <p-progressSpinner
+    style="position: absolute;
+  left: 40%;
+  top: 40%;" ></p-progressSpinner>
+</div>
+<form  [formGroup]="agencyControl" (ngSubmit)="submit()">
+  <div class="card center-card" >
+    <div class="card-header" style="padding: 20px;">
+      <p style="color: #7e1727; font-weight: bold; text-decoration: underline; text-align: center;font-size: x-large">  {{btnname}} une agence </p>
+    </div>
+
+    <div class="card-body">
+      <div class="alert alert-warning" *ngIf="agencyControl.dirty && agencyControl.invalid">Veuillez Renseigner tous les champs</div>
+
+      <div class="row">
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Nom de l'agence</mat-label>
+          <input matInput formControlName="name" name="username" required>
+        </mat-form-field>
+        <mat-form-field  appearance="outline" class="col">
+          <mat-label>Numéro de l'agence</mat-label>
+          <input matInput formControlName="phone" name="phone">
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Fax de l'agence</mat-label>
+          <input matInput formControlName="fax" name="fax" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Fix de l'agence</mat-label>
+          <input matInput formControlName="landLineNumber" name="landLineNumber" required>
+        </mat-form-field>
+      </div>
+      <div class="row">
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Adresse de l'agence</mat-label>
+          <input matInput formControlName="adress" name="adress" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Description de l'agence</mat-label>
+          <input matInput formControlName="description" name="description" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="col">
+          <mat-label>Agence Primaire ?</mat-label>
+          <input matInput formControlName="primaire" name="primary" required>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="card-footer" >
+      <button mat-stroked-button [disabled]="!agencyControl.valid" class="btn-color">{{btnname}}</button>
+
+      <button mat-stroked-button routerLink="/ezlocprimary/primary-module/users" >Annuler</button>
+    </div>
+  </div>
+</form>
+<p-toast position="top-right"></p-toast>
+
+
+
+

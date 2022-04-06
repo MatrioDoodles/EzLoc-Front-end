@@ -45,10 +45,12 @@ export class HeaderComponentComponent implements OnInit {
           {
             label: 'Ajouter agence',
             icon: 'fas fa-plus',
+            routerLink: "/ezlocprimary/primary-module/addAgency",
           },
           {
             label: 'Liste agences',
             icon: 'fas fa-list',
+            routerLink: "/ezlocprimary/primary-module/agencies",
           },
         ]
       },
@@ -73,10 +75,12 @@ export class HeaderComponentComponent implements OnInit {
         {
           label: 'Ajouter véhicule',
           icon: 'fas fa-plus',
+          routerLink: "/ezlocprimary/primary-module/addCar",
         },
         {
           label: 'Liste véhicules',
           icon: 'fas fa-list',
+          routerLink: "/ezlocprimary/primary-module/cars",
         },
       ]
     },

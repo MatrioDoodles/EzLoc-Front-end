@@ -15,17 +15,23 @@ import { MainComponentComponent } from './DashboardComponents/main-component/mai
 import { CardModule } from 'primeng/card';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ToastModule } from "primeng/toast";
-import {MatSidenavModule} from "@angular/material/sidenav";
-import { AddAgentComponent } from './AgentComponents/add-agent/add-agent.component';
-import { ListAgentsComponent } from './AgentComponents/list-agents/list-agents.component';
-import {TableModule} from "primeng/table";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
-import {MatFormFieldModule} from "@angular/material/form-field";
-import {MatInputModule} from "@angular/material/input";
-import {MatButtonModule} from "@angular/material/button";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { AgentFormComponent } from './AgentComponents/agent-form/agent-form.component';
+import { ListAgentsComponent } from './AgentComponents/agents-list/list-agents.component';
+import { TableModule } from "primeng/table";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatButtonModule } from "@angular/material/button";
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { SettingsComponent } from './MiscComponents/settings/settings.component';
-import {TabViewModule} from "primeng/tabview";
+import { TabViewModule } from "primeng/tabview";
+import { MatIconModule } from "@angular/material/icon";
+import { AgencyFormComponent } from './AgenciesComponents/agency-form/agency-form.component';
+import { AgencyListComponent } from './AgenciesComponents/agency-list/agency-list.component';
+import { CarFormComponent } from './CarsComponents/car-form/car-form.component';
+import { CarListComponent } from './CarsComponents/car-list/car-list.component';
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 
 
@@ -36,9 +42,13 @@ import {TabViewModule} from "primeng/tabview";
     WelcomeComponentComponent,
     HeaderComponentComponent,
     MainComponentComponent,
-    AddAgentComponent,
+    AgentFormComponent,
     ListAgentsComponent,
-    SettingsComponent
+    SettingsComponent,
+    AgencyFormComponent,
+    AgencyListComponent,
+    CarFormComponent,
+    CarListComponent
   ],
   imports: [
     CommonModule,
@@ -61,6 +71,8 @@ import {TabViewModule} from "primeng/tabview";
     MatButtonModule,
     ProgressSpinnerModule,
     TabViewModule,
+    MatIconModule,
+    MatCheckboxModule,
 
   ]
 })

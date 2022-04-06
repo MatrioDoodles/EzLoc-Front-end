@@ -43,7 +43,7 @@ this.retrieveAllUsers();
   }
 
   update(selectedUser:User){
-    this.route.navigate(['ezlocprimary/primary-module/addUser',selectedUser.id])
+    this.route.navigate(['ezlocprimary/primary-module/updateUser',selectedUser.id])
   }
 
   delete(selectedUser:number){

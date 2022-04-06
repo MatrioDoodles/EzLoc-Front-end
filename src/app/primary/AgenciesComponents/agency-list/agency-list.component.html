@@ -1,0 +1,116 @@
+
+
+<div class="card" style="width: 90%; left: 5%;">
+  <p-table #dt3 [value]="agencies" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+           [rowsPerPageOptions]="[10,25,50]" [autoLayout]="true" [responsive]="true"  [loading]="loading" styleClass="p-datatable-customers p-datatable-gridlines"
+           [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+           [globalFilterFields]="['name']">
+    <ng-template pTemplate="caption">
+      <h1 style="color: #7e1727; font-weight: bold; text-decoration: underline; text-align: center;">Liste des Agences</h1>
+      <!--div class="p-d-flex">
+
+              <span class="p-input-icon-left p-ml-auto">
+                  <i class="pi pi-search"></i>
+                  <input pInputText type="text" (input)="dt3.filterGlobal($event.target.value, 'contains')"
+                         placeholder="Rechercher un agent" />
+              </span>
+      </div-->
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Nom
+          </div>
+        </th>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Numéro
+          </div>
+        </th>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Fax
+          </div>
+        </th>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Fix
+          </div>
+        </th>
+
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Adress
+          </div>
+        </th>
+
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Description
+          </div>
+        </th>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Primaire ?
+          </div>
+        </th>
+        <th>
+          <div class="p-d-flex p-jc-between p-ai-center">
+            Actions
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-agency>
+      <tr>
+        <td>
+          {{agency.name}}
+        </td>
+        <td>
+          {{agency.phone}}
+        </td>
+        <td>
+          {{agency.landLineNumber}}
+        </td>
+        <td>
+          {{agency.fax}}
+        </td>
+
+        <td>
+          {{agency.adress}}
+        </td>
+
+        <td>
+          {{agency.description}}
+        </td>
+
+        <td>
+          {{agency.primaire}}
+        </td>
+
+
+        <td  style="text-align:center">
+
+          <button pButton type="button" (click)="update(agency)" style="margin : 5px" class="p-button-success p-button-rounded" icon="pi pi-pencil"></button>
+          <button pButton type="button" (click)="delete(agency.id)" style="margin : 5px" class="p-button-warning p-button-rounded" icon="pi pi-trash"></button>
+
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">Pas d'agences trouvé.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div class="card-footer">
+    <button  mat-button routerLink="/ezlocprimary/primary-module/addAgency" class="btn btn-primary btn-lg" style="margin-left: 45% " >
+      Ajouter une Agence
+    </button>
+  </div>
+</div>
+<p-toast position="top-right"></p-toast>
+
+

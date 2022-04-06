@@ -11,7 +11,7 @@ import {UserService} from "../../../services/services/user.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {map, startWith} from "rxjs/operators";
 import {Observable} from "rxjs";
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-settings',
@@ -22,9 +22,15 @@ export class SettingsComponent implements OnInit {
   private enterprise:Enterprise;
   private settings:Settings;
   private User:User;
+  public hideOld = true;
+  public hideNew = true;
+  public hideConfirmation = true;
   public imageSrc: string;
   public updateUser: boolean = true;
-  public passwordCheck : boolean;
+  public updateEnterpriseGeneral: boolean = true;
+  public updateEnterpriseSpecial: boolean = true;
+  public updateSettings: boolean = true;
+  public passwordCheck : boolean = false;
   public filteredOptions: Observable<string[]>;
   public oldPasswordCheck: boolean;
   public newPasswordCheck: boolean;
@@ -41,32 +47,34 @@ export class SettingsComponent implements OnInit {
     private enterpriseService:EnterpriseService,
     private messageService: MessageService,
     private userService: UserService,) { }
-  enterpriseForm = this.formBuilder.group({
-    name: ["",Validators.required],
-    description: ["", Validators.required],
-    phone: ["", Validators.required],
-    bank: ["", Validators.required],
-    mail: ["", Validators.required],
-    website: ["", Validators.required],
-    landLineNumber: ["", Validators.required],
-    fax: ["", Validators.required],
-    adress: ["", Validators.required],
-    registryNumber: ["", Validators.required],
-    fiscalId: ["", Validators.required],
-    city: ["", Validators.required],
-    immatriculation: ["", Validators.required],
-    logo: ["", Validators.required],
+  enterpriseFormGeneral = this.formBuilder.group({
+    name: [{value:"",disabled:this.updateEnterpriseGeneral},Validators.required],
+    description: [{value:"",disabled:this.updateEnterpriseGeneral}, Validators.required],
+    phone: [{value:"",disabled:this.updateEnterpriseGeneral}, Validators.required],
+    mail: [{value:"",disabled:this.updateEnterpriseGeneral}, Validators.required],
+    website: [{value:"",disabled:this.updateEnterpriseGeneral}, Validators.required],
+    landLineNumber: [{value:"",disabled:this.updateEnterpriseGeneral}, Validators.required],
+    fax: [{value:"",disabled:this.updateEnterpriseGeneral}, Validators.required],
+    adress: [{value:"",disabled:this.updateEnterpriseGeneral}, Validators.required],
+    logo: [{value:"",disabled:this.updateEnterpriseGeneral}, Validators.required],
+  })
+  enterpriseFormSpecial = this.formBuilder.group({
+    bank: [{value:"",disabled:this.updateEnterpriseSpecial}, Validators.required],
+    registryNumber: [{value:"",disabled:this.updateEnterpriseSpecial}, Validators.required],
+    fiscalId: [{value:"",disabled:this.updateEnterpriseSpecial}, Validators.required],
+    city: [{value:"",disabled:this.updateEnterpriseSpecial}, Validators.required],
+    immatriculation: [{value:"",disabled:this.updateEnterpriseSpecial}, Validators.required],
   })
   settingsForm = this.formBuilder.group({
-    tva: ["", Validators.required],
-    tvaValue: ["", Validators.required],
-    currency: ["", Validators.required],
-    acronym: ["", Validators.required],
-    clientPrefix: ["", Validators.required],
-    carPrefix: ["", Validators.required],
-    reservationPrefix: ["", Validators.required],
-    invoicePrefix: ["", Validators.required],
-    contractPrefix: ["", Validators.required],
+    tva: [{value:"",disabled:this.updateSettings}, Validators.required],
+    tvaValue: [{value:"",disabled:this.updateSettings}, Validators.required],
+    currency: [{value:"",disabled:this.updateSettings}, Validators.required],
+    acronym: [{value:"",disabled:this.updateSettings}, Validators.required],
+    clientPrefix: [{value:"",disabled:this.updateSettings}, Validators.required],
+    carPrefix: [{value:"",disabled:this.updateSettings}, Validators.required],
+    reservationPrefix: [{value:"",disabled:this.updateSettings}, Validators.required],
+    invoicePrefix: [{value:"",disabled:this.updateSettings}, Validators.required],
+    contractPrefix: [{value:"",disabled:this.updateSettings}, Validators.required],
   })
   userControl = this.formBuilder.group({
     name: [{value:"",disabled:this.updateUser}, Validators.required],
@@ -88,7 +96,6 @@ export class SettingsComponent implements OnInit {
   {
     this.oldPasswordCheck = false;
     this.newPasswordCheck = false;
-    this.passwordCheck = false;
     this.filteredOptions = this.userControl.controls['city'].valueChanges.pipe(
       startWith(''),
       map((value:any) => this._filter(value))
@@ -127,23 +134,27 @@ export class SettingsComponent implements OnInit {
 
     return this.villes.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
-
-  private generateEnterprisePayload()
+  //Generate Enterprise general Payload
+  private generateEnterpriseGeneralPayload()
   {
-    this.enterprise.name = this.enterpriseForm.controls['name'].value ;
-    this.enterprise.description = this.enterpriseForm.controls['description'].value ;
-    this.enterprise.phone = this.enterpriseForm.controls['phone'].value ;
-    this.enterprise.bank = this.enterpriseForm.controls['bank'].value ;
-    this.enterprise.mail = this.enterpriseForm.controls['mail'].value ;
-    this.enterprise.landLineNumber = this.enterpriseForm.controls['landLineNumber'].value ;
-    this.enterprise.website = this.enterpriseForm.controls['website'].value ;
-    this.enterprise.fax = this.enterpriseForm.controls['fax'].value ;
-    this.enterprise.adress = this.enterpriseForm.controls['adress'].value ;
-    this.enterprise.registryNumber = this.enterpriseForm.controls['registryNumber'].value ;
-    this.enterprise.fiscalId = this.enterpriseForm.controls['fiscalId'].value ;
-    this.enterprise.city = this.enterpriseForm.controls['city'].value ;
-    this.enterprise.immatriculation = this.enterpriseForm.controls['immatriculation'].value ;
-    this.enterprise.logo = this.enterpriseForm.controls['logo'].value.substring(23);
+    this.enterprise.name = this.enterpriseFormGeneral.controls['name'].value ;
+    this.enterprise.description = this.enterpriseFormGeneral.controls['description'].value ;
+    this.enterprise.phone = this.enterpriseFormGeneral.controls['phone'].value ;
+    this.enterprise.mail = this.enterpriseFormGeneral.controls['mail'].value ;
+    this.enterprise.landLineNumber = this.enterpriseFormGeneral.controls['landLineNumber'].value ;
+    this.enterprise.website = this.enterpriseFormGeneral.controls['website'].value ;
+    this.enterprise.fax = this.enterpriseFormGeneral.controls['fax'].value ;
+    this.enterprise.adress = this.enterpriseFormGeneral.controls['adress'].value ;
+    this.enterprise.logo = this.enterpriseFormGeneral.controls['logo'].value.substring(23);
+  }
+  //Generate Enterprise Special Payload
+  private generateEnterpriseSpecialPayload()
+  {
+    this.enterprise.bank = this.enterpriseFormSpecial.controls['bank'].value ;
+    this.enterprise.registryNumber = this.enterpriseFormSpecial.controls['registryNumber'].value ;
+    this.enterprise.fiscalId = this.enterpriseFormSpecial.controls['fiscalId'].value ;
+    this.enterprise.city = this.enterpriseFormSpecial.controls['city'].value ;
+    this.enterprise.immatriculation = this.enterpriseFormSpecial.controls['immatriculation'].value ;
   }
   //Generate Settings Payload
   private generateSettingsPayload()
@@ -175,7 +186,7 @@ export class SettingsComponent implements OnInit {
 
     if(event.target.files[0].size >2097152) {
       alert("veuillez ne pas depasser 2 mo de taille");
-      this.enterpriseForm.controls['logo'].setValue("");
+      this.enterpriseFormGeneral.controls['logo'].setValue("");
     }
     else
     {
@@ -188,7 +199,7 @@ export class SettingsComponent implements OnInit {
 
           this.imageSrc = reader.result as string;
 
-          this.enterpriseForm.patchValue({
+          this.enterpriseFormGeneral.patchValue({
             logo: reader.result
           });
 
@@ -202,30 +213,45 @@ export class SettingsComponent implements OnInit {
   {
     this.generateSettingsPayload();
     this.settingsService.update(this.settings,this.settings.id).subscribe(
-      result => {},
+      result => {
+        this.getInfos();
+        this.disableSettingsUpdate();
+        this.messageService.add({severity:'success', summary:'Paramètres Enregistré', detail:"les paramètres ont été enregistré avec succès"});
+      },
       (error:HttpErrorResponse) => {
-        if(error.status === 200){
-          this.messageService.add({severity:'success', summary:'Paramètres Enregistré', detail:"les paramètres ont été enregistré avec succès"});
-        }
-        else{
           this.messageService.add({severity: 'error', summary: 'Erreur', detail: "Une erreur est survenu"});
-        }
       }
     )
   }
-  //update Enterprise
-  public saveEnterprise()
+  //update Enterprise General
+  public saveEnterpriseGeneral()
   {
-    this.generateEnterprisePayload();
+    this.generateEnterpriseGeneralPayload();
     this.enterpriseService.update(this.enterprise,this.enterprise.id).subscribe(
-      result => {},
+      result => {
+        this.getInfos();
+        this.disableEnterpriseGeneralUpdate();
+        this.messageService.add({severity:'success', summary:'Infos entreprise Enregistré', detail:"les informations ont été enregistré avec succès"});
+      },
       (error:HttpErrorResponse) => {
-        if(error.status === 200){
-          this.messageService.add({severity:'success', summary:'Infos entreprise Enregistré', detail:"les informations ont été enregistré avec succès"});
-        }
-        else{
           this.messageService.add({severity: 'error', summary: 'Erreur', detail: "Une erreur est survenu"});
-        }
+      }
+    )
+
+  }
+  //update Enterprise Special
+  public saveEnterpriseSpecial()
+  {
+    this.generateEnterpriseSpecialPayload();
+    this.enterpriseService.update(this.enterprise,this.enterprise.id).subscribe(
+      result => {
+        this.getInfos();
+        this.disableEnterpriseSpecialUpdate();
+        this.messageService.add({severity:'success', summary:'Infos entreprise Enregistré', detail:"les informations ont été enregistré avec succès"});
+      },
+      (error:HttpErrorResponse) => {
+          this.messageService.add({severity: 'error', summary: 'Erreur', detail: "Une erreur est survenu"});
+
       }
     )
 
@@ -251,20 +277,20 @@ export class SettingsComponent implements OnInit {
   //Set enterprise form in the HTML with the retrieved infos
   private setEnterpriseFields()
   {
-    this.enterpriseForm.controls['name'].setValue(this.enterprise.name) ;
-    this.enterpriseForm.controls['description'].setValue(this.enterprise.description) ;
-    this.enterpriseForm.controls['phone'].setValue(this.enterprise.phone) ;
-    this.enterpriseForm.controls['bank'].setValue(this.enterprise.bank) ;
-    this.enterpriseForm.controls['mail'].setValue(this.enterprise.mail) ;
-    this.enterpriseForm.controls['landLineNumber'].setValue(this.enterprise.landLineNumber) ;
-    this.enterpriseForm.controls['website'].setValue(this.enterprise.website) ;
-    this.enterpriseForm.controls['fax'].setValue(this.enterprise.fax) ;
-    this.enterpriseForm.controls['adress'].setValue(this.enterprise.adress) ;
-    this.enterpriseForm.controls['registryNumber'].setValue(this.enterprise.registryNumber) ;
-    this.enterpriseForm.controls['fiscalId'].setValue(this.enterprise.fiscalId) ;
-    this.enterpriseForm.controls['city'].setValue(this.enterprise.city) ;
-    this.enterpriseForm.controls['immatriculation'].setValue(this.enterprise.immatriculation) ;
-    this.enterpriseForm.controls['logo'].setValue(this.enterprise.logo);
+    this.enterpriseFormGeneral.controls['name'].setValue(this.enterprise.name) ;
+    this.enterpriseFormGeneral.controls['description'].setValue(this.enterprise.description) ;
+    this.enterpriseFormGeneral.controls['phone'].setValue(this.enterprise.phone) ;
+    this.enterpriseFormGeneral.controls['mail'].setValue(this.enterprise.mail) ;
+    this.enterpriseFormGeneral.controls['landLineNumber'].setValue(this.enterprise.landLineNumber) ;
+    this.enterpriseFormGeneral.controls['website'].setValue(this.enterprise.website) ;
+    this.enterpriseFormGeneral.controls['fax'].setValue(this.enterprise.fax) ;
+    this.enterpriseFormGeneral.controls['adress'].setValue(this.enterprise.adress) ;
+    this.enterpriseFormGeneral.controls['logo'].setValue(this.enterprise.logo);
+    this.enterpriseFormSpecial.controls['city'].setValue(this.enterprise.city) ;
+    this.enterpriseFormSpecial.controls['bank'].setValue(this.enterprise.bank) ;
+    this.enterpriseFormSpecial.controls['registryNumber'].setValue(this.enterprise.registryNumber) ;
+    this.enterpriseFormSpecial.controls['fiscalId'].setValue(this.enterprise.fiscalId) ;
+    this.enterpriseFormSpecial.controls['immatriculation'].setValue(this.enterprise.immatriculation) ;
   }
   //Set settings form in the HTML with the retrieved infos
   private setSettingsFields()
@@ -311,6 +337,82 @@ export class SettingsComponent implements OnInit {
     this.userControl.get('adress')?.disable();
     this.userControl.get('city')?.disable();
   }
+  //Enable field to update Enterprise general infos
+  public enableEnterpriseGeneralUpdate()
+  {
+    this.updateEnterpriseGeneral =false;
+    this.enterpriseFormGeneral.get('name')?.enable();
+    this.enterpriseFormGeneral.get('mail')?.enable();
+    this.enterpriseFormGeneral.get('description')?.enable();
+    this.enterpriseFormGeneral.get('phone')?.enable();
+    this.enterpriseFormGeneral.get('adress')?.enable();
+    this.enterpriseFormGeneral.get('fax')?.enable();
+    this.enterpriseFormGeneral.get('landLineNumber')?.enable();
+    this.enterpriseFormGeneral.get('website')?.enable();
+    this.enterpriseFormGeneral.get('logo')?.enable();
+  }
+  //disable field after update Enterprise general infos
+  private disableEnterpriseGeneralUpdate()
+  {
+    this.updateEnterpriseGeneral = true;
+    this.enterpriseFormGeneral.get('name')?.disable();
+    this.enterpriseFormGeneral.get('mail')?.disable();
+    this.enterpriseFormGeneral.get('description')?.disable();
+    this.enterpriseFormGeneral.get('phone')?.disable();
+    this.enterpriseFormGeneral.get('adress')?.disable();
+    this.enterpriseFormGeneral.get('fax')?.disable();
+    this.enterpriseFormGeneral.get('landLineNumber')?.disable();
+    this.enterpriseFormGeneral.get('website')?.disable();
+    this.enterpriseFormGeneral.get('logo')?.disable();
+  }
+  //Enable field to update Enterprise special infos
+  public enableEnterpriseSpecialUpdate()
+  {
+    this.updateEnterpriseSpecial = false;
+    this.enterpriseFormSpecial.get('bank')?.enable();
+    this.enterpriseFormSpecial.get('city')?.enable();
+    this.enterpriseFormSpecial.get('fiscalId')?.enable();
+    this.enterpriseFormSpecial.get('immatriculation')?.enable();
+    this.enterpriseFormSpecial.get('registryNumber')?.enable();
+  }
+  //disable field after update Enterprise special infos
+  private disableEnterpriseSpecialUpdate()
+  {
+    this.updateEnterpriseSpecial = true;
+    this.enterpriseFormSpecial.get('bank')?.disable();
+    this.enterpriseFormSpecial.get('city')?.disable();
+    this.enterpriseFormSpecial.get('fiscalId')?.disable();
+    this.enterpriseFormSpecial.get('immatriculation')?.disable();
+    this.enterpriseFormSpecial.get('registryNumber')?.disable();
+  }
+  //Enable field to update Settings infos
+  public enableSettingsUpdate()
+  {
+    this.updateSettings = false;
+    this.settingsForm.get('tva')?.enable();
+    this.settingsForm.get('tvaValue')?.enable();
+    this.settingsForm.get('acronym')?.enable();
+    this.settingsForm.get('currency')?.enable();
+    this.settingsForm.get('clientPrefix')?.enable();
+    this.settingsForm.get('contractPrefix')?.enable();
+    this.settingsForm.get('invoicePrefix')?.enable();
+    this.settingsForm.get('carPrefix')?.enable();
+    this.settingsForm.get('reservationPrefix')?.enable();
+  }
+  //disable field after update Settings infos
+  private disableSettingsUpdate()
+  {
+    this.updateSettings = true;
+    this.settingsForm.get('tva')?.disable();
+    this.settingsForm.get('tvaValue')?.disable();
+    this.settingsForm.get('acronym')?.disable();
+    this.settingsForm.get('currency')?.disable();
+    this.settingsForm.get('clientPrefix')?.disable();
+    this.settingsForm.get('contractPrefix')?.disable();
+    this.settingsForm.get('invoicePrefix')?.disable();
+    this.settingsForm.get('carPrefix')?.disable();
+    this.settingsForm.get('reservationPrefix')?.disable();
+  }
   //checking the new password and confirmation
   public checkingPasswordFields(){
     if(this.passwordControl.controls['newPassword'].value === this.passwordControl.controls['newPasswordConfirmation'].value)
@@ -325,12 +427,27 @@ export class SettingsComponent implements OnInit {
   public passwordChange()
   {
 
-  if(this.passwordControl.controls['oldPassword'].value===this.User.password)
-  {
-    this.passwordControl.controls['newPassword'].value;
-  }
-  else{
-      this.oldPasswordCheck = true
-  }
+
+    //this.oldPasswordCheck = false;
+    bcrypt.compare(this.passwordControl.controls['oldPassword'].value,this.User.password ,
+      (err, res) => {
+      if(res) {
+        this.oldPasswordCheck = false;
+        if(this.passwordControl.controls['oldPassword'].value===this.passwordControl.controls['newPassword'].value) {
+          this.newPasswordCheck = true;
+        }
+        else {
+          this.newPasswordCheck = false;
+          this.userService.updatePassword(this.passwordControl.controls['newPassword'].value,this.User.id).subscribe(
+            data =>{
+              this.getInfos();
+              this.messageService.add({severity:'success', summary:'Mot de passe changé', detail:"le mot de passe a été changé avec succès"});
+            }
+          )
+        }
+      } else {
+        this.oldPasswordCheck = true;
+      }
+    });
   }
 }
