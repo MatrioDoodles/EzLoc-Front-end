@@ -7,14 +7,34 @@
     <div class="row">
       <div class="row justify-content-center">
         <div class="col-md-12 col-lg-4">
-          <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-            <mat-label>Constructeur</mat-label>
-            <input matInput formControlName="constructorName" name="constructorName" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-            <mat-label>Modèle</mat-label>
-            <input matInput formControlName="model" name="model" required>
-          </mat-form-field>
+          <div class="form-group mb-3">
+          <p-dropdown (onChange)="getDetails()" [options]="constructors"
+                      optionLabel="label" [filter]="true"
+                      [(ngModel)]="car.constructorName"
+                      filterBy="label" [showClear]="true"
+                      [ngModelOptions]="{standalone: true}"
+                      placeholder="Choissisez un Constructeur">
+            <ng-template let-const pTemplate="item">
+              <div>
+                <div>{{const.label}}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          </div>
+          <div class="form-group mb-3" style="width: 100%;">
+            <p-dropdown [options]="models"
+                        optionLabel="label" [filter]="true"
+                        [(ngModel)]="car.model"
+                        filterBy="label" [showClear]="true"
+                        [ngModelOptions]="{standalone: true}"
+                        placeholder="Choissisez un Modèle">
+              <ng-template let-mod pTemplate="item">
+                <div>
+                  <div>{{mod.label}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
           <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
             <mat-label>Couleur</mat-label>
             <input matInput formControlName="color" name="color" required>
@@ -33,35 +53,68 @@
           </mat-form-field>
         </div>
         <div class="col-md-12 col-lg-4">
-          <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-            <mat-label>Finition</mat-label>
-            <input matInput formControlName="trim" name="trim" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-            <mat-label>Type Carburant</mat-label>
-            <input matInput formControlName="fuel" name="fuel" required>
-          </mat-form-field>
+          <div class="form-group mb-3" style="width: 100%;">
+            <p-dropdown [options]="trims"
+                        optionLabel="label" [filter]="true"
+                        [(ngModel)]="car.trim"
+                        filterBy="label" [showClear]="true"
+                        [ngModelOptions]="{standalone: true}"
+                        placeholder="Choissisez une Finition">
+              <ng-template let-trim pTemplate="item">
+                <div>
+                  <div>{{trim.label}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
+          <div class="form-group mb-3" style="width: 100%;">
+            <p-dropdown [options]="fuels"
+                        [filter]="true"
+                        [(ngModel)]="car.fuel"
+                        filterBy="label" [showClear]="true"
+                        [ngModelOptions]="{standalone: true}"
+                        placeholder="Choissisez Le Carburant">
+              <ng-template let-fuel pTemplate="item">
+                <div>
+                  <div>{{fuel}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
           <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
             <mat-label>Kilomètrage</mat-label>
             <input matInput formControlName="mileage" name="mileage" required>
           </mat-form-field>
-          <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-            <mat-label>Boite de vitesse</mat-label>
-            <input matInput formControlName="gearbox" name="gearbox" required>
-          </mat-form-field>
+          <div class="form-group mb-3" style="width: 100%;">
+            <p-dropdown [options]="gearbox"
+                        [filter]="true"
+                        [(ngModel)]="car.gearbox"
+                        filterBy="label" [showClear]="true"
+                        [ngModelOptions]="{standalone: true}"
+                        placeholder="Choissisez une Boite à vitesse">
+              <ng-template let-gearbox pTemplate="item">
+                <div>
+                  <div>{{gearbox}}</div>
+                </div>
+              </ng-template>
+            </p-dropdown>
+          </div>
           <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
             <mat-label>Immatriculation</mat-label>
             <input matInput formControlName="registration" name="registration" required>
           </mat-form-field>
+          <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
+            <mat-label>Assurance</mat-label>
+            <input matInput formControlName="assurance" name="assurance" required>
+          </mat-form-field>
         </div>
         <div class="col-md-12 col-lg-4">
           <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-            <mat-label>Assurance</mat-label>
-            <input matInput formCon+trolName="assurance" name="assurance" required>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
             <mat-label>Date fin d'assurance</mat-label>
-            <input matInput formControlName="assuranceEndDate" name="assuranceEndDate" required>
+            <input matInput [matDatepicker]="picker3" formControlName="assuranceEndDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3></mat-datepicker>
           </mat-form-field>
           <mat-checkbox formControlName="assurancePaid" name="assurancePaid" required class="form-group mb-3">
             Assurance Payé ?
@@ -71,15 +124,21 @@
             <input matInput formControlName="lastMileage" name="lastMileage" required>
           </mat-form-field>
           <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
-            <mat-label>Date visite technique</mat-label>
-            <input matInput formControlName="technicalVisit" name="technicalVisit" required>
+            <mat-label>Date Visite Technique</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="technicalVisit">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
           <mat-checkbox formControlName="technicalVisitDone" name="technicalVisitDone" required class="form-group mb-3">
             Visite technique effectué ?
           </mat-checkbox>
           <mat-form-field appearance="outline" class="form-group mb-3" style="width: 100%;">
             <mat-label>Date Vignette</mat-label>
-            <input matInput formControlName="vignette" name="vignette" required>
+            <input matInput [matDatepicker]="picker2" formControlName="vignette">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
           <mat-checkbox formControlName="vignettePaid" name="vignettePaid" required class="form-group mb-3">
             Vignette Payé ?
@@ -88,12 +147,13 @@
       </div>
     </div>
   </div>
-  <div class="card-footer d-flex justify-content-center">
-    <!--button *ngIf="!updateSettings" pButton pRipple (click)="saveSettings()"
-            [disabled]="!enterpriseFormSpecial.valid" type="button"
-            label="Sauvegarder" class="writing-font p-button-rounded col-md-12 col-lg-6" icon="pi pi-save"></button>
-    <button *ngIf="updateSettings" pButton pRipple (click)="enableSettingsUpdate()" type="button" label="Modifier" icon="pi pi-pencil"
-            class="writing-font p-button-rounded col-md-12 col-lg-6"></button-->
-  </div>
+
+    <div class="card-footer" >
+      <!--button mat-stroked-button [disabled]="!carForm.valid" class="btn-color">{{btnname}}</button-->
+      <button mat-stroked-button (click)="submit()" class="btn-color">{{btnname}}</button>
+
+      <button mat-stroked-button routerLink="/ezlocprimary/primary-module/users" >Annuler</button>
+    </div>
+
 </div>
 </form>

@@ -18,7 +18,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class AgentFormComponent implements OnInit {
 
-  User: User
+  User: User;
   btnname: string;
   showLoader:boolean = true;
   villes: string[] =  [

@@ -32,7 +32,9 @@ import { AgencyListComponent } from './AgenciesComponents/agency-list/agency-lis
 import { CarFormComponent } from './CarsComponents/car-form/car-form.component';
 import { CarListComponent } from './CarsComponents/car-list/car-list.component';
 import { MatCheckboxModule } from "@angular/material/checkbox";
-
+import { DropdownModule } from 'primeng/dropdown';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 
 @NgModule({
@@ -73,6 +75,9 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     TabViewModule,
     MatIconModule,
     MatCheckboxModule,
+    DropdownModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
   ]
 })

@@ -30,4 +30,13 @@ export class CarService{
   allReservation(id:number){
     return this.httpClient.get(`${API_URL_DEV}/cars/${id}/reservations`);
   }
+  getConstructors() {
+    return this.httpClient.get(`${API_URL_DEV}/cars/constructors`)
+  }
+  getModelsByConstructor(id:number) {
+    return this.httpClient.get(`${API_URL_DEV}/cars/models/${id}`)
+  }
+  getTrimsByConstructor(id:number) {
+    return this.httpClient.get(`${API_URL_DEV}/cars/trims/${id}`)
+  }
 }

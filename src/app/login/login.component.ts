@@ -52,15 +52,14 @@ export class LoginComponent implements OnInit {
             }
           }
           else {
-            this.messageService.add({severity:'error', summary:'Compte Désactivé ', detail:'Veuillez voir avec votre administrateur',sticky: true});
+            this.messageService.add({severity:'error', summary:'Compte Désactivé ', detail:'Veuillez voir avec votre administrateur'});
           }
         }, 2000)
 
       },
       (error: any) => {
-        console.log(error)
         this.showLoader = false;
-        this.messageService.add({severity:'error', summary:'Connexion échoué ', detail:'Login ou Mot de passe érroné',sticky: true});
+        this.messageService.add({severity:'error', summary:'Connexion échoué ', detail:'Login ou Mot de passe érroné'});
       }
     )
 
